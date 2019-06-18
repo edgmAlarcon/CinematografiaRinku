@@ -18,7 +18,7 @@ public class EmpleadosRest {
 	UsuariosBO usuarioBO;
 	
 	@RequestMapping("/getAllUsuarios")
-	ResponseEntity<List<Usuarios>> holaMundo() {
+	ResponseEntity<?> getAllUsuarios() {
 		return new ResponseEntity<List<Usuarios>>(usuarioBO.getAllUsuarios(),HttpStatus.OK);
 	}
 }

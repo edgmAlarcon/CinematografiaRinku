@@ -16,6 +16,7 @@ public class UsuariosDAO implements IUsuariosDAO{
 	@PersistenceContext	
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuarios> getAllUsuarios() {
 		String hql = "FROM Usuarios";
