@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "c_tipo_empleado")
+@Table(name = "empleados")
 @DynamicInsert
 @DynamicUpdate
 @SelectBeforeUpdate
@@ -27,19 +27,28 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoEmpleado extends AbstractEntity{
+public class Empleados extends AbstractEntity{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7734293738286515889L;
+	private static final long serialVersionUID = -8786488356648968164L;
 	
 	@Id
-	@Column(name="id_Tipo_Empleado",  unique = true, nullable = false)
-	private int idTipoEmpleado;
+	@Column(name="id_Empleado",  unique = true, nullable = false)
+	private String idEmpleado;
 	
 	@Basic
-	@Column(name = "Descripcion")
-	private String descripcion;
+	@Column(name="nombre")
+	private String nombre;
 	
+	@Basic
+	@Column(name="rol")
+	private String rol;
+	
+	@Basic
+	@Column(name="tipo_Empleado")
+	private String tipoEmpleado;
+
+
 }

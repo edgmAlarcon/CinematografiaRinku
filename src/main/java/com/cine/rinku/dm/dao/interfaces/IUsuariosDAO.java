@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.cine.rinku.dm.model.Usuarios;
+import com.cine.rinku.dm.model.Empleados;
 
 @Repository
 public interface IUsuariosDAO {
-	List<Usuarios> getAllUsuarios();
-	
+	List<Empleados> getAllUsuarios();
+	void insertUsuario(Empleados empleado);
 }
