@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cine.rinku.common.dto.UsuarioDTO;
 import com.cine.rinku.dm.dao.UsuariosDAO;
 import com.cine.rinku.dm.model.Empleados;
 
