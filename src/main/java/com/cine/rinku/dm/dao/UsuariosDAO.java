@@ -2,33 +2,36 @@ package com.cine.rinku.dm.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cine.rinku.dm.dao.interfaces.IUsuariosDAO;
 import com.cine.rinku.dm.model.Empleados;
 
 @Repository
-public class UsuariosDAO implements IUsuariosDAO{
-	
-	@PersistenceContext	
-	private EntityManager entityManager;
+public class UsuariosDAO{
+	@Autowired
+	IUsuariosDAO iUsuarioDAO;
 
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Empleados> getAllUsuarios() {
-		String hql = "FROM Empleados";
-		return (List<Empleados>)entityManager.createQuery(hql).getResultList();
+		return iUsuarioDAO.findAll();
 	}
-
-	@Override
+	
 	public void insertUsuario(Empleados empleado) {
-		entityManager.getTransaction();
-		entityManager.persist(empleado);
-		entityManager.getTransaction().commit();
+		try {
+			iUsuarioDAO.save(empleado);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
 	}
+	
+	public void deleteUsuario(Empleados empleado) {
+		try {
+			iUsuarioDAO.delete(empleado);
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

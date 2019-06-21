@@ -19,8 +19,13 @@ public class UsuariosBO {
 		return usuarioDAO.getAllUsuarios();
 	}
 	
-	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Transactional
 	public void insertUsuario(Empleados empleado) {
 		usuarioDAO.insertUsuario(empleado);
+	}
+	
+	@Transactional
+	public void deleteUsuario(Empleados empleado) {
+		usuarioDAO.deleteUsuario(empleado);
 	}
 }

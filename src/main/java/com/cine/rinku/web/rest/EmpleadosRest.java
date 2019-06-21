@@ -40,6 +40,20 @@ public class EmpleadosRest {
 		}catch(Exception e) {
 			e.printStackTrace();
 			resultado.setCodigo(-1);
+			resultado.setMensaje(e.getMessage());
+		}
+		return resultado;
+	}
+	
+	@RequestMapping("/deleteUsuarios")
+	ResultadoDTO<?> deleteUsuarios(@RequestBody Empleados empleado){
+		ResultadoDTO<Object> resultado = new ResultadoDTO<Object>();
+		try {
+			usuarioBO.deleteUsuario(empleado);
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultado.setCodigo(-1);
+			resultado.setMensaje(e.getMessage());
 		}
 		return resultado;
 	}
