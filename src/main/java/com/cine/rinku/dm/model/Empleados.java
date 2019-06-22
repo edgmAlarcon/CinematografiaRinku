@@ -52,6 +52,10 @@ public class Empleados extends AbstractEntity{
 	@Basic
 	@Column(name="tipo_Empleado")
 	private String tipoEmpleado;
+	
+	@Basic
+	@Column(name = "pagar")
+	float pagar;
 
 
 }

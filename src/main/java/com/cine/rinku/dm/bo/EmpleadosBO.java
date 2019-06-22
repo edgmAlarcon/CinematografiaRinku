@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cine.rinku.dm.dao.UsuariosDAO;
+import com.cine.rinku.dm.dao.EmpleadosDAO;
 import com.cine.rinku.dm.model.Empleados;
 
 @Component
-public class UsuariosBO {
+public class EmpleadosBO {
 	@Autowired
-	UsuariosDAO usuarioDAO;
+	EmpleadosDAO usuarioDAO;
 	
 	public List<Empleados> getAllUsuarios(){
 		return usuarioDAO.getAllUsuarios();
+	}
+	
+	public Empleados getEmpleado(Empleados empleado) throws Exception {
+		return usuarioDAO.getEmpleado(empleado);
 	}
 	
 	@Transactional

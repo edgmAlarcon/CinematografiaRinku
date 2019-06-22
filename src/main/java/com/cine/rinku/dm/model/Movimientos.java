@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "o_movimientos")
 @DynamicInsert
 @DynamicUpdate
 @SelectBeforeUpdate
@@ -38,7 +38,7 @@ public class Movimientos extends AbstractEntity{/**
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_Movimiento",  unique = true, nullable = false)
+	@Column(name="id_Movimientos",  unique = true, nullable = false)
 	private Long idMovimiento;
 	
 	@Basic
@@ -46,7 +46,7 @@ public class Movimientos extends AbstractEntity{/**
 	private Long idEmpleado;
 	
 	@Basic
-	@Column(name="nombre", nullable = false)
+	@Column(name="nombre_Empleado", nullable = false)
 	private String nombre;
 	
 	@Basic
@@ -69,7 +69,9 @@ public class Movimientos extends AbstractEntity{/**
 	@Column(name = "cubrio_Turno", nullable = false)
 	private boolean cubrioTurno;
 
-	
+	@Basic
+	@Column(name = "turno_cubierto", nullable = false)
+	private boolean turnoCubierto;
 	
 
 }
