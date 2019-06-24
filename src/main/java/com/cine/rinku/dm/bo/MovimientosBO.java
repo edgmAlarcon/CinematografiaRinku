@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cine.rinku.common.dto.NominaDTO;
 import com.cine.rinku.common.utils.FechaUtils;
 import com.cine.rinku.dm.dao.ConfiguracionesDAO;
 import com.cine.rinku.dm.dao.MovimientosDAO;
-import com.cine.rinku.dm.model.Configuraciones;
 import com.cine.rinku.dm.model.Empleados;
 import com.cine.rinku.dm.model.Movimientos;
 
@@ -19,7 +19,7 @@ public class MovimientosBO {
 	MovimientosDAO movimientosDAO;
 	
 	@Autowired
-	ConfiguracionesDAO configuracionesDAO;
+	ConfiguracionesBO configuracionesBO;
 	
 	@Autowired
 	EmpleadosBO empleadosBO;
@@ -54,13 +54,22 @@ public class MovimientosBO {
 		}
 	}
 	
+	public List<Movimientos> getAcumuladoById(NominaDTO nomina) throws Exception{
+		try {
+			return movimientosDAO.getAcumuladoById(nomina);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception(e);
+		}
+	}
+	
 	public float calcularAcumulado(Movimientos movimiento) throws Exception {
 		float acumulado = 0.0f;
 		try {
 			acumulado += movimiento.getCantidadEntregas() * Float.parseFloat(
-					configuracionesDAO.getConfiguraciones("PAGO_POR_ENTREGA").getValor());//sacamos dinero por entrega
+					configuracionesBO.getConfiguraciones("PAGO_POR_ENTREGA").getValor());//sacamos dinero por entrega
 			if(movimiento.getRol().equals("AUXILIAR") && movimiento.isCubrioTurno()) {//obtenemos bono cubierto para auxiliar
-				acumulado += Float.parseFloat(configuracionesDAO.getConfiguraciones("BONO_DIARIO_"+movimiento.getTurnoCubierto()).getValor());
+				acumulado += Float.parseFloat(configuracionesBO.getConfiguraciones("BONO_DIARIO_"+movimiento.getTurnoCubierto()).getValor());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

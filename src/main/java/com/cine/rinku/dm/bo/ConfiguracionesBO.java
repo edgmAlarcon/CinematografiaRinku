@@ -14,7 +14,7 @@ public class ConfiguracionesBO {
 	@Autowired
 	ConfiguracionesDAO configuracionesDAO;
 	
-	public Configuraciones getAllConfiguraciones(String id) throws Exception{
+	public Configuraciones getConfiguraciones(String id) throws Exception{
 		return configuracionesDAO.getConfiguraciones(id);
 	}
 
