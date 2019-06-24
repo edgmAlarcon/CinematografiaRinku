@@ -1,5 +1,7 @@
 package com.cine.rinku.dm.dao;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,15 @@ public class MovimientosDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	public void deleteMovimiento(Movimientos movimiento) throws Exception {
+		try {
+			iMovimientosDAO.deleteById(movimiento.getIdMovimiento());
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception("error al eliminar movimiento");
+		}
 	}
 	
 }

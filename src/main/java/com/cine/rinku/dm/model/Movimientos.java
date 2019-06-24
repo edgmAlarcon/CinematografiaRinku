@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.dom4j.tree.AbstractEntity;
 import org.hibernate.annotations.DynamicInsert;
@@ -57,7 +59,7 @@ public class Movimientos extends AbstractEntity{/**
 	@Column(name="tipo_Empleado", nullable = false)
 	private String tipoEmpleado;
 	
-	@Basic
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_Movimiento", nullable = false)
 	private Date fechaMovimiento;
 	
@@ -70,8 +72,11 @@ public class Movimientos extends AbstractEntity{/**
 	private boolean cubrioTurno;
 
 	@Basic
-	@Column(name = "turno_cubierto", nullable = false)
-	private boolean turnoCubierto;
+	@Column(name = "turno_cubierto", nullable = true)
+	private String turnoCubierto;
 	
+	@Basic
+	@Column(name = "acumulado")
+	private float acumulado;
 
 }

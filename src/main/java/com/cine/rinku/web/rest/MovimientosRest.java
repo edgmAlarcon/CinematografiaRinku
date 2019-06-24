@@ -42,4 +42,18 @@ public class MovimientosRest {
 		}
 		return resultado;
 	}
+	
+	@RequestMapping("/deleteMovimiento")
+	ResultadoDTO<?> deleteMovimiento(@RequestBody Movimientos movimiento){
+		ResultadoDTO<Object> resultado = new ResultadoDTO<Object>();
+		try {
+			movimientosBO.deleteMovimiento(movimiento);
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultado.setCodigo(-1);
+			resultado.setMensaje(e.getMessage());
+		}
+		
+		return resultado;
+	}
 }

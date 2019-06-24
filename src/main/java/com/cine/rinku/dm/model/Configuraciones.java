@@ -13,6 +13,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
+import com.cine.rinku.dm.model.Empleados.EmpleadosBuilder;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "configuraciones")
 @DynamicInsert
 @DynamicUpdate
 @SelectBeforeUpdate
@@ -29,28 +31,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Empleados extends AbstractEntity{
-
-	/**
+public class Configuraciones extends AbstractEntity{/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8786488356648968164L;
+	private static final long serialVersionUID = 6144886405251454388L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_Empleado",  unique = true, nullable = false)
-	private Long idEmpleado;
+	@Column(name = "id_Configuraciones",  unique = true, nullable = false)
+	private String idConfiguracion;
 	
 	@Basic
-	@Column(name="nombre")
-	private String nombre;
+	@Column(name = "valor")
+	private String valor;
 	
 	@Basic
-	@Column(name="rol")
-	private String rol;
-	
-	@Basic
-	@Column(name="tipo_Empleado")
-	private String tipoEmpleado;
+	@Column(name = "descripcion")
+	private String descripcion;
 
 }
