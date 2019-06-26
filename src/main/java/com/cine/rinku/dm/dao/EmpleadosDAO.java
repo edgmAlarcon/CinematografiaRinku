@@ -14,12 +14,12 @@ public class EmpleadosDAO{
 	IUsuariosDAO iUsuarioDAO;
 
 	public List<Empleados> getAllUsuarios() {
-		return iUsuarioDAO.findAll();
+		return iUsuarioDAO.findAll();//Obtenemos todos los empleados
 	}
 	
 	public Empleados getEmpleado(Empleados empleado) throws Exception {
 		if(iUsuarioDAO.findById(empleado.getIdEmpleado()).isPresent()) {
-			return iUsuarioDAO.findById(empleado.getIdEmpleado()).get();
+			return iUsuarioDAO.findById(empleado.getIdEmpleado()).get();//Obtenemos un empleado por id
 		}else {
 			throw new Exception();
 		}
@@ -28,7 +28,7 @@ public class EmpleadosDAO{
 	
 	public void insertUsuario(Empleados empleado) {
 		try {
-			iUsuarioDAO.save(empleado);
+			iUsuarioDAO.save(empleado);//Insertamos un usuario 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
@@ -36,7 +36,7 @@ public class EmpleadosDAO{
 	
 	public void deleteUsuario(Empleados empleado) {
 		try {
-			iUsuarioDAO.delete(empleado);
+			iUsuarioDAO.delete(empleado);//eliminamos un usuario
 		}catch(Exception e ) {
 			e.printStackTrace();
 		}

@@ -9,6 +9,11 @@ import com.cine.rinku.common.dto.NominaDTO;
 import com.cine.rinku.common.dto.ResultadoDTO;
 import com.cine.rinku.dm.bo.NominaBO;
 
+/***
+ *En esta clase caen todas las peticiones echas desde el front end y se retorna un objeto ResultadoDTO con un 
+ *codigo de respuesta y un mensaje informativo/error 
+ * 
+ **/
 @RestController
 @RequestMapping("/rinku/nomina")
 public class NominaRest {

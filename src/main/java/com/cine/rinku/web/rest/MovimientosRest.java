@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cine.rinku.common.dto.ResultadoDTO;
 import com.cine.rinku.dm.bo.MovimientosBO;
-import com.cine.rinku.dm.model.Empleados;
 import com.cine.rinku.dm.model.Movimientos;
 
+/***
+ *En esta clase caen todas las peticiones echas desde el front end y se retorna un objeto ResultadoDTO con un 
+ *codigo de respuesta y un mensaje informativo/error 
+ * 
+ **/
 @RestController
 @RequestMapping("/rinku/movimientos")
 public class MovimientosRest {

@@ -22,11 +22,11 @@ public class NominaBO {
 		float deducciones;
 		float sueldoNeto;
 		try {
-			sueldoBruto = calculaSueldoBruto(nomina);
+			sueldoBruto = calculaSueldoBruto(nomina); //Calculamos sueldo bruto
 			nomina.setSueldoBruto(sueldoBruto);
-			deducciones = calculaDeducciones(nomina);
+			deducciones = calculaDeducciones(nomina); //Calculamos isr
 			nomina.setDeducciones(deducciones);
-			sueldoNeto = nomina.getSueldoBruto()-nomina.getDeducciones();
+			sueldoNeto = nomina.getSueldoBruto()-nomina.getDeducciones();//Obtenemos sueldo neto
 			nomina.setSueldoLibre(sueldoNeto);
 			return nomina;
 		}catch(Exception e) {
@@ -39,9 +39,9 @@ public class NominaBO {
 		double decimal;
 		float deduccion = 0.0f;
 		try {
-			if(nomina.getSueldoBruto()<=Double.parseDouble(configuracionesBO.getConfiguraciones("TOPE_ISR_INFERIOR").getValor())) {
-				decimal = (Double.parseDouble(configuracionesBO.getConfiguraciones("RETENCION_ISR_INFERIOR").getValor())/100);
-				deduccion = (float) (nomina.getSueldoBruto()*decimal);
+			if(nomina.getSueldoBruto()<=Double.parseDouble(configuracionesBO.getConfiguraciones("TOPE_ISR_INFERIOR").getValor())) {//Validamos si sobrepasa los 16 mil limite de isr
+				decimal = (Double.parseDouble(configuracionesBO.getConfiguraciones("RETENCION_ISR_INFERIOR").getValor())/100);//Obtenmos el porcentaje adescontar
+				deduccion = (float) (nomina.getSueldoBruto()*decimal);//Multiplicamos el porcentaje a descontar
 			}else {
 				decimal = (Double.parseDouble(configuracionesBO.getConfiguraciones("RETENCION_ISR_SUPERIOR").getValor())/100);
 				deduccion = (float) (nomina.getSueldoBruto()*decimal);

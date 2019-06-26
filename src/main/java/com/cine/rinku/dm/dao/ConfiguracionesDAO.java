@@ -1,7 +1,5 @@
 package com.cine.rinku.dm.dao;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +15,7 @@ public class ConfiguracionesDAO {
 	public Configuraciones getConfiguraciones(String id) throws Exception{
 		try {
 			if(iConfiguracionesDAO.findById(id).isPresent()) {
-				return iConfiguracionesDAO.findById(id).get();
+				return iConfiguracionesDAO.findById(id).get();//Obtenemos las configuraciones por llave
 			}else {
 				throw new Exception("Error al obtener configuracion");
 			}
