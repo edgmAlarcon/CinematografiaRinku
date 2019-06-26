@@ -59,7 +59,11 @@ public class NominaBO {
 		try {
 			List<Movimientos> movimientos = movimientosBO.getAcumuladoById(nomina);
 			for(Movimientos movimiento: movimientos) {//obtenemos el total acumulado en el mes por entregas
-				sueldoBruto += movimiento.getAcumulado();
+				sueldoBruto += movimiento.getCantidadEntregas() * Float.parseFloat(
+						configuracionesBO.getConfiguraciones("PAGO_POR_ENTREGA").getValor());//sacamos dinero por entrega
+				if(movimiento.getRol().equals("AUXILIAR") && movimiento.isCubrioTurno()) {//obtenemos bono cubierto para auxiliar
+					sueldoBruto += Float.parseFloat(configuracionesBO.getConfiguraciones("BONO_DIARIO_"+movimiento.getTurnoCubierto()).getValor());
+				}
 			}
 			
 			sueldoBruto += (Float.parseFloat(configuracionesBO.getConfiguraciones("SUELDO_BASE_DIARIO").getValor())*nomina.getDias());//obtenmos sueldo base mensual

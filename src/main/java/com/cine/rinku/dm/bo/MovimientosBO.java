@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cine.rinku.common.dto.NominaDTO;
 import com.cine.rinku.common.utils.FechaUtils;
-import com.cine.rinku.dm.dao.ConfiguracionesDAO;
 import com.cine.rinku.dm.dao.MovimientosDAO;
 import com.cine.rinku.dm.model.Empleados;
 import com.cine.rinku.dm.model.Movimientos;
@@ -38,7 +37,6 @@ public class MovimientosBO {
 			movimiento.setTipoEmpleado(empleado.getTipoEmpleado());
 			movimiento.setRol(empleado.getRol());
 			movimiento.setFechaMovimiento(FechaUtils.convesrsionFecha(movimiento.getFechaMovimiento()));
-			movimiento.setAcumulado(calcularAcumulado(movimiento));
 			movimientosDAO.insertMovimiento(movimiento);
 		}catch(Exception e) {
 			throw new Exception("error al insertar movimiento",e);
@@ -63,18 +61,4 @@ public class MovimientosBO {
 		}
 	}
 	
-	public float calcularAcumulado(Movimientos movimiento) throws Exception {
-		float acumulado = 0.0f;
-		try {
-			acumulado += movimiento.getCantidadEntregas() * Float.parseFloat(
-					configuracionesBO.getConfiguraciones("PAGO_POR_ENTREGA").getValor());//sacamos dinero por entrega
-			if(movimiento.getRol().equals("AUXILIAR") && movimiento.isCubrioTurno()) {//obtenemos bono cubierto para auxiliar
-				acumulado += Float.parseFloat(configuracionesBO.getConfiguraciones("BONO_DIARIO_"+movimiento.getTurnoCubierto()).getValor());
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new Exception("Error al calcular el acumulado");
-		}
-		return acumulado;
-	}
 }

@@ -74,9 +74,5 @@ public class Movimientos extends AbstractEntity{/**
 	@Basic
 	@Column(name = "turno_cubierto", nullable = true)
 	private String turnoCubierto;
-	
-	@Basic
-	@Column(name = "acumulado")
-	private float acumulado;
 
 }
